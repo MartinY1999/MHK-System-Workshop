@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29709.97
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MHKBackend", "MHKBackend\MHKBackend.csproj", "{EDAB8582-32DE-484E-9886-0B3FCE9221A8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MHKDTO", "MHKDTO\MHKDTO.csproj", "{F434AAA4-A0DD-4B2B-9148-AB878B181756}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MHKFrontEnd", "MHKFrontEnd\MHKFrontEnd.csproj", "{9B5AB8D3-BCBF-45E8-A233-725FF2914827}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EDAB8582-32DE-484E-9886-0B3FCE9221A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDAB8582-32DE-484E-9886-0B3FCE9221A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDAB8582-32DE-484E-9886-0B3FCE9221A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDAB8582-32DE-484E-9886-0B3FCE9221A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F434AAA4-A0DD-4B2B-9148-AB878B181756}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F434AAA4-A0DD-4B2B-9148-AB878B181756}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F434AAA4-A0DD-4B2B-9148-AB878B181756}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F434AAA4-A0DD-4B2B-9148-AB878B181756}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B5AB8D3-BCBF-45E8-A233-725FF2914827}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B5AB8D3-BCBF-45E8-A233-725FF2914827}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B5AB8D3-BCBF-45E8-A233-725FF2914827}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B5AB8D3-BCBF-45E8-A233-725FF2914827}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E261291A-6F80-4984-9FCC-FE5EB0F8FAC5}
+	EndGlobalSection
+EndGlobal
