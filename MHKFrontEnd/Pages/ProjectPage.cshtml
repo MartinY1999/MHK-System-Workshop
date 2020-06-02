@@ -1,0 +1,28 @@
+﻿@page "{id}"
+@model MHKFrontEnd.ProjectPageModel
+@{
+    ViewData["Title"] = "FinancePage";
+}
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a asp-page="/Project" asp-route-year="@Model.Project.Year">@Model.Project.Year</a></li>
+    <li class="breadcrumb-item"><a asp-page="/Project" asp-route-day="@Model.Project.Month">@Model.CurrentMonth</a></li>
+    <li class="breadcrumb-item active">Project Data</li>
+</ol>
+
+<h1>Project details in @Model.CurrentMonth @Model.Project.Year</h1>
+<ul>
+    <li>Total Tasks: @Model.Project.TotalTasks, Tasks On Time: @Model.Project.TasksOnTime</li>
+    @{
+        decimal ProjectRatio = Convert.ToDecimal(Model.Project.TasksOnTime) / Convert.ToDecimal(Model.Project.TotalTasks);
+    }
+    <li>Ratio: @($"{ProjectRatio:F2}")</li>
+    @{
+        decimal ProjectNI = (ProjectRatio - Model.Project.Minimum) / (Model.Project.Maximum - Model.Project.Minimum);
+    }
+    <li>NI: @($"{ProjectNI:F2}")</li>
+    @{
+        decimal ProjectLevelInNK = Math.Round(ProjectNI * Model.Project.WeightNK * 100, MidpointRounding.AwayFromZero);
+    }
+    <li>Level In NK: @ProjectLevelInNK%</li>
+</ul>

@@ -1,0 +1,35 @@
+﻿@page
+@model MHKFrontEnd.FinanceModel
+@{
+    ViewData["Title"] = "Finance";
+}
+
+<div class="agenda">
+    <ul class="nav nav-pills mb-3">
+        @foreach (var month in Model.MonthOffsets)
+        {
+            <li role="presentation" class="nav-item">
+                <a class="nav-link @(Model.CurrentMonthOffset == month.Offset ? "active" : null)" asp-route-month="@month.Offset">@month.Month.ToUpper()</a>
+            </li>
+        }
+    </ul>
+    @foreach (var month in Model.Finances.Where(x => x.Key == Model.CurrentMonthOffset))
+    {
+        @foreach (var finance in month)
+        {
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title"><a asp-page="FinancePage" asp-route-id="@finance.Id">Finance Stats: @finance.Month @finance.Year</a></h5>
+                </div>
+            </div>
+        }
+    }
+    <div class="wrapper mt-3">
+        <a asp-page="/Admin/CreateFinance" class="btn create">Add New Finance Data</a>
+    </div>
+</div>
+
+@section Scripts
+{
+    <link href="~/css/centerbutton.css" rel="stylesheet" />
+}

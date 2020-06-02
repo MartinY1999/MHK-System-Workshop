@@ -1,0 +1,28 @@
+﻿@page
+@model MHKFrontEnd.ProjectModel  
+@{
+    ViewData["Title"] = "Project";
+}
+
+    <div class="agenda">
+        <ul class="nav nav-pills mb-3">
+            @foreach (var month in Model.MonthOffsets)
+            {
+                <li role="presentation" class="nav-item">
+                    <a class="nav-link @(Model.CurrentMonthOffset == month.Offset ? "active" : null)" asp-route-month="@month.Offset">@month.Month</a>
+                </li>
+            }
+        </ul>
+        @foreach (var month in Model.Projects.Where(x => x.Key == Model.CurrentMonthOffset))
+        {
+            @foreach (var project in month)
+            {
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"><a asp-page="ProjectPage" asp-route-id="@project.Id">Finance Stats: @project.Month @project.Year</a></h5>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+

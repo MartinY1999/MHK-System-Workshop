@@ -1,0 +1,10 @@
+﻿.right {
+    position: absolute;
+    right: 0px;
+    width: 300px;
+}
+
+.backcolor {
+    color : black;
+    background-color: white;
+}

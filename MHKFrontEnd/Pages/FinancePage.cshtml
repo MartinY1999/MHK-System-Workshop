@@ -1,0 +1,42 @@
+﻿@page "{id}"
+@model MHKFrontEnd.FinancePageModel
+@{
+    ViewData["Title"] = "FinancePage";
+}
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a asp-page="/Finance" asp-route-year="@Model.Finance.Year">@Model.Finance.Year</a></li>
+    <li class="breadcrumb-item"><a asp-page="/Finance" asp-route-day="@Model.Finance.Month">@Model.CurrentMonth</a></li>
+    <li class="breadcrumb-item active">Finance Data</li>
+</ol>
+
+<h1>Finance details in @Model.CurrentMonth @Model.Finance.Year</h1>
+<ul>
+    <li>Monthly Sum: @Model.Finance.MonthlySum, Client Count: @Model.Finance.PeopleCount</li>
+    @{ 
+        decimal FinanceRatio = Model.Finance.MonthlySum * 0.001m / Model.Finance.PeopleCount;
+    }
+    <li>Ratio: @($"{FinanceRatio:F2}")</li>
+    @{
+        decimal FinanceNI = (FinanceRatio - Model.Finance.Minimum) / (Model.Finance.Maximum - Model.Finance.Minimum);
+    }
+    <li>NI: @($"{FinanceNI:F2}")</li>
+    @{ 
+        decimal FinanceLevelInNK = Math.Round(FinanceNI * Model.Finance.BSPE * 100, MidpointRounding.AwayFromZero);
+    }
+    <li>Level In NK: @FinanceLevelInNK%</li>
+</ul>
+
+<div class="card-footer">
+    <ul class="list-inline mb-0">
+        @if (Model.IsAdmin)
+        {
+        <li>
+            <a asp-page="/Admin/EditFinance" asp-route-id="@Model.Finance.Id" class="btn btn-primary">Edit</a>
+        </li>
+        }
+        <li class="list-inline-item">
+            <a asp-page="/Search" class="btn btn-primary mt-2">Back</a>
+        </li>
+    </ul>
+</div>

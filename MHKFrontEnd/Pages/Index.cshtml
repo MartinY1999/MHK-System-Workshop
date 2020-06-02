@@ -1,0 +1,48 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+@if (!Model.IsAdmin)
+{
+    <div class="jumbotron mt-3 bg-home">
+        <h2 class="text-home">Welcome to MHK.</h2>
+        <hr class="bg-dark hr-2" />
+        <h4 class="text-home">Please <a asp-area="Identity" asp-page="/Account/Register" class="text-white">Register</a> if you don't have an account and to access the functionality of the app.</h4>
+        <h4 class="text-home">Please login below if you already have registered.</h4>
+    </div>
+
+    <form id="account" method="post">
+        <h4>Log in.</h4>
+        <hr />
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="@Model.Email"></label>
+            <input asp-for="@Model.Email" class="form-control" />
+            <span asp-validation-for="@Model.Email" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Password"></label>
+            <input asp-for="@Model.Password" class="form-control" />
+            <span asp-validation-for="@Model.Password" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <div class="checkbox">
+                <label asp-for="@Model.RememberMe">
+                    <input asp-for="@Model.RememberMe" />
+                    @Html.DisplayNameFor(m => m.RememberMe)
+                </label>
+            </div>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Log in</button>
+        </div>
+    </form>
+}
+
+
+@section Scripts
+{
+    <link href="~/css/homepage.css" rel="stylesheet" />
+}

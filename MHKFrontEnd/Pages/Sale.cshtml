@@ -1,0 +1,40 @@
+﻿@page
+@model MHKFrontEnd.SaleModel
+@{
+    ViewData["Title"] = "Sale";
+}
+
+<div class="agenda">
+    <ul class="nav nav-pills mb-3">
+        @foreach (var month in Model.MonthOffsets)
+        {
+            <li role="presentation" class="nav-item">
+                <a class="nav-link @(Model.CurrentMonthOffset == month.Offset ? "active" : null)" asp-route-month="@month.Offset">@month.Month</a>
+            </li>
+        }
+    </ul>
+    @foreach (var month in Model.Sales.Where(x => x.Key == Model.CurrentMonthOffset))
+    {
+        <h2>This month data in Sales branch: @month.Key</h2>
+        <ul>
+            @foreach (var sale in month)
+            {
+                <li>Total Tasks: @sale.TotalTasks, Tasks On Time: @sale.TasksOnTime</li>
+
+                decimal SaleRatio = Convert.ToDecimal(sale.TasksOnTime) / Convert.ToDecimal(sale.TotalTasks);
+
+                <li>Ratio: @($"{SaleRatio:F2}")</li>
+
+                decimal SaleNI = (SaleRatio - sale.Minimum) / (sale.Maximum - sale.Minimum);
+
+                <li>NI: @($"{SaleNI:F2}")</li>
+
+                decimal SaleLevelInNK = Math.Round(SaleNI * sale.WeightNK * 100, MidpointRounding.AwayFromZero);
+
+                <li>Level In NK: @SaleLevelInNK%</li>
+            }
+        </ul>
+    }
+</div>
+
+

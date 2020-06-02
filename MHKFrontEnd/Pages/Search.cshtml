@@ -1,0 +1,96 @@
+﻿@page
+@using MHKDTO
+@model MHKFrontEnd.SearchModel
+@{
+    ViewData["Title"] = "Search";
+}
+
+    <div class="search">
+        <h1>Search</h1>
+        <form method="get">
+            <div class="input-group mb-3">
+                <input asp-for="Term" placeholder="Search for data..." class="form-control" />
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="submit">Submit!</button>
+                </div>
+            </div>
+            @if (Model.SearchResults?.Count > 0)
+            {
+                <p>
+                    @Model.SearchResults.Count result(s)
+                </p>
+            }
+        </form>
+    </div>
+
+    <div class="row">
+        @foreach (var result in Model.SearchResults)
+        {
+        <div class="col-md-12">
+            @switch (result.Type)
+            {
+                case SearchResultType.Finance:
+                    <div class="card shadow mb-3">
+                        <div class="card-header">
+                            <h3 class="card-title">Finance: <a asp-page="FinancePage" asp-route-id="@result.Finance.Id">@result.Finance.Month @result.Finance.Year</a></h3>
+                        </div>
+                        <div class="card-body">
+                            <ul>
+                                <li>@result.Finance.MonthlySum</li>
+                                <li>@result.Finance.PeopleCount</li>
+                                ...
+                            </ul>
+                        </div>
+                    </div>
+                    break;
+
+                case SearchResultType.Project:
+                    <div class="card shadow mb-3">
+                        <div class="card-header">
+                            <h3 class="card-title">Project: <a asp-page="ProjectPage" asp-route-id="@result.Project.Id">@result.Project.Month @result.Project.Year</a></h3>
+                        </div>
+                        <div class="card-body">
+                            <ul>
+                                <li>@result.Project.TotalTasks</li>
+                                <li>@result.Project.TasksOnTime</li>
+                                ...
+                            </ul>
+                        </div>
+                    </div>
+                        break;
+
+                    case SearchResultType.Sale:
+                    <div class="card shadow mb-3">
+                        <div class="card-header">
+                            <h3 class="card-title">Sale: <a asp-page="SalePage" asp-route-id="@result.Sale.Id">@result.Sale.Month @result.Sale.Year</a></h3>
+                        </div>
+                        <div class="card-body">
+                            <ul>
+                                <li>@result.Sale.TotalTasks</li>
+                                <li>@result.Sale.TasksOnTime</li>
+                                ...
+                            </ul>
+                        </div>
+                    </div>
+                        break;
+
+                    case SearchResultType.Support:
+                    <div class="card shadow mb-3">
+                        <div class="card-header">
+                            <h3 class="card-title">Support: <a asp-page="SupportPage" asp-route-id="@result.Support.Id">@result.Support.Month @result.Support.Year</a></h3>
+                        </div>
+                        <div class="card-body">
+                            <ul>
+                                <li>@result.Support.TotalTasks</li>
+                                <li>@result.Support.TasksOnTime</li>
+                                ...
+                            </ul>
+                        </div>
+                    </div>
+                            break;
+                    
+            }
+        </div>
+        }
+    </div>
+

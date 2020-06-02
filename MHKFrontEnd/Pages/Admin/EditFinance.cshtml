@@ -1,0 +1,73 @@
+﻿@page "{id}"
+@model MHKFrontEnd.EditFinanceModel
+@{
+    ViewData["Title"] = "EditFinance";
+}
+
+<h3>Edit Finance</h3>
+
+ <form method="post" class="form-horizontal">
+     <div asp-validation-summary="All" class="text-danger"></div>
+     <input asp-for="Finance.Id" type="hidden" />
+     <div class="form-group">
+         <label asp-for="Finance.BSPE" class="col-md-2 control-label"></label>
+         <div class="col-md-10">
+             <input asp-for="Finance.BSPE" class="form-control" />
+             <span asp-validation-for="Finance.BSPE" class="text-danger"></span>
+         </div>
+     </div>
+     <div class="form-group">
+         <label asp-for="Finance.Minimum" class="col-md-2 control-label"></label>
+         <div class="col-md-10">
+             <input asp-for="Finance.Minimum" class="form-control" />
+             <span asp-validation-for="Finance.Minimum" class="text-danger"></span>
+         </div>
+     </div>
+     <div class="form-group">
+         <label asp-for="Finance.Maximum" class="col-md-2 control-label"></label>
+         <div class="col-md-10">
+             <input asp-for="Finance.Maximum" class="form-control" />
+             <span asp-validation-for="Finance.Maximum" class="text-danger"></span>
+         </div>
+     </div>
+     <div class="form-group">
+         <label asp-for="Finance.Month" class="col-md-2 control-label"></label>
+         <div class="col-md-10">
+             <input asp-for="Finance.Month" class="form-control" />
+             <span asp-validation-for="Finance.Month" class="text-danger"></span>
+         </div>
+     </div>
+     <div class="form-group">
+         <label asp-for="Finance.Year" class="col-md-2 control-label"></label>
+         <div class="col-md-10">
+             <input asp-for="Finance.Year" class="form-control" />
+             <span asp-validation-for="Finance.Year" class="text-danger"></span>
+         </div>
+     </div>
+     <div class="form-group">
+         <label asp-for="Finance.MonthlySum" class="col-md-2 control-label"></label>
+         <div class="col-md-10">
+             <input asp-for="Finance.MonthlySum" class="form-control" />
+             <span asp-validation-for="Finance.MonthlySum" class="text-danger"></span>
+         </div>
+     </div>
+     <div class="form-group">
+         <label asp-for="Finance.PeopleCount" class="col-md-2 control-label"></label>
+         <div class="col-md-10">
+             <input asp-for="Finance.PeopleCount" class="form-control" />
+             <span asp-validation-for="Finance.PeopleCount" class="text-danger"></span>
+         </div>
+     </div>
+     <div class="form-group">
+         <div class="col-md-offset-2 col-md-10">
+             <button type="submit" class="btn btn-primary">Save</button>
+             <button type="submit" asp-page-handler="Delete" class="btn btn-danger">Delete</button>
+             <a href='javascript:history.go(-1)' class="btn btn-primary">Back</a>
+         </div>
+     </div>
+ </form>
+
+@section Scripts {
+     <partial name="_ValidationScriptsPartial" />
+}
+

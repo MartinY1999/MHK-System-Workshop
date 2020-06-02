@@ -1,0 +1,39 @@
+﻿@page
+@model MHKFrontEnd.SupportModel
+@{
+    ViewData["Title"] = "Support";
+}
+
+<div class="agenda">
+<ul class="nav nav-pills mb-3">
+    @foreach (var month in Model.MonthOffsets)
+    {
+        <li role="presentation" class="nav-item">
+            <a class="nav-link @(Model.CurrentMonthOffset == month.Offset ? "active" : null)" asp-route-month="@month.Offset">@month.Month</a>
+        </li>
+    }
+</ul>
+@foreach (var month in Model.Supports.Where(x => x.Key == Model.CurrentMonthOffset))
+{
+    <h2>This month data in Support branch: @month.Key</h2>
+    <ul>
+        @foreach (var support in month)
+        {
+            <li>Total Tasks: @support.TotalTasks, Tasks On Time: @support.TasksOnTime</li>
+
+            decimal SupportRatio = Convert.ToDecimal(support.TasksOnTime) / Convert.ToDecimal(support.TotalTasks);
+
+            <li>Ratio: @($"{SupportRatio:F2}")</li>
+
+            decimal SupportNI = (SupportRatio - support.Minimum) / (support.Maximum - support.Minimum);
+
+            <li>NI: @($"{SupportNI:F2}")</li>
+
+            decimal SupportLevelInNK = Math.Round(SupportNI * support.WeightNK * 100, MidpointRounding.AwayFromZero);
+
+            <li>Level In NK: @SupportLevelInNK%</li>
+        }
+    </ul>
+}
+</div>
+
